@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{%block title%}{%endblock%}</title>
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/app.css')}}">
+  
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <!--Font-->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!--Icon-->
+  <script src="https://kit.fontawesome.com/97df9bd7c2.js" crossorigin="anonymous"></script>
+  <script src="{{url_for('static', filename='js/main.js')}}"></script>
+<style>
+body {
+background-image:url('https://img.freepik.com/free-vector/white-abstract-background_23-2148810113.jpg?w=1380&t=st=1691283738~exp=1691284338~hmac=6340f9a6f0ccec28f54f093c03b44580e17d94bc343dfde6a7b983eebf78c28c')
+}
+
+
+
+</style>
+</head>
+
+
+
+<body class=" bg-light">
+  <nav class='top-nav'>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <a href='/'><img class='ml-3' src="https://i.ibb.co/TbFRkWD/Screenshot-2023-08-02-223202.png" height='65' alt=""></a>
+        <div class="px-3">
+          <ul>
+            <li><a href="">მამაკაცის</a></li>
+            <li><a href="">ქალის</a></li>
+            <li><a href="">ბავშვის</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="d-flex my-1">
+        <a href='/account' class="mx-3 text-center"> მოგესალმებით, {{current_user.name}}</a>
+        <a href='/admin/orders' class="mx-3 text-dark"> შეკვეთა {{total_orders}}</a>
+        <a href='/cart' class="text-dark" style="position:relative">
+          <i  style="font-size:18px" class="fa-solid fa-cart-shopping mx-3"></i>
+          <span id='cart' class="badge"></span>
+        </a>
+        {%if current_user.is_authenticated%}
+        <div class="mx-3">
+          <a href='/logout' class="text-dark">
+            <i style="font-size:18px" class="fa-solid fa-arrow-right-from-bracket"></i>
+          </a>
+        </div>
+        {%else%}
+        <div class="mx-3">
+          <a href='/login' style="color: blueviolet;">
+            ავტორიზაცია 
+          </a>
+        </div>
+        {%endif%}
+        
+      </div>
+    </div>
+  </nav>
+  <div class="container"> 
+    {%block content%}
+    {%endblock%}
+  </div>
+  
+
+</body>
+
+</html>
